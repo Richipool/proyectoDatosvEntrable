@@ -1,9 +1,12 @@
 #include <iostream>
 #include <sstream>
-using namespace std;
 #include "Integer.h"
 #include "Lista_Doble.h"
 #include "Vector.h"
+
+using std::cin;
+using std::cout;
+using std::endl;
 
 int main() {
 	Integer* prueba = new Integer("1000000000000000000000000000000000000000000000000000000000000000000000");
@@ -28,5 +31,5 @@ int main() {
 	delete prueba;
 	delete prueba2;
 	cout << endl << endl << endl;
-	system("pause");
+	cin.get();
 }

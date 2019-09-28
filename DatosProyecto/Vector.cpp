@@ -1,7 +1,7 @@
 #include "Vector.h"
 
 
-
+//constructor 
 Vector::Vector() {
 	cant = 0;
 	for (int i = 0; i < SIZE; i++) {
@@ -9,53 +9,49 @@ Vector::Vector() {
 	}
 }
 
-
+//destructor
 Vector::~Vector() {	}
 
-
-void Vector::insertar(int numero) {
+//agrega un valor dentro del vector
+void Vector::Insertar(int numero) {
 	vect[cant++] = numero;
 }
 
-
-int Vector::getNumero(int i) {
+//retorna el valor de la posicion del vector que se le pasa por parametro
+int Vector::GetNumero(int i) {
 	return vect[i];
 }
 
-void Vector::setNumero(int pos, int val){
+//se le pone un valor a una posicion del vector que se le pase por parametro
+void Vector::SetNumero(int pos, int val){
 	vect[pos] = val;
 }
 
+//imprime los valores del vector
 string Vector::toString() {
 	stringstream s;
 	for (int i = cant-1; i >= 0; i--) {
-		/*if (vect[i] == 0) {
-			s<<completar(to_string(vect[i]));
-		}
-		else*/
-		s << completar(to_string(vect[i]));
-			//s << vect[i];
+		s << AgregarCeros(to_string(vect[i]));
 	}
 	return s.str();
 }
 
-int Vector::getCantidad(){
+//retorna a cantidad de elementos que hay dentro del vector
+int Vector::GetCantidad(){
 	return cant;
 }
 
+// sobrecarga del operador << de salida
 ostream & operator<<(ostream & salida,  Vector &d){
 	salida << d.toString();
 	return salida;
 }
 
-string Vector::completar(string n){//para completar los 0 a la izq
-	if (n.length() < 9) {//si el tamaño no es 0
-		
+//completa con ceros en la izquierda el vector
+string Vector::AgregarCeros(string n){
+	if (n.length() < 9) {
 		for (int i = 0; i < n.length() - 9; i++) {
-			//if (n.size() % 9 != 0) {//si no lo ha comletado (no tiene los 9 digitos)
 				n = "0" + n;
-			//}
-			//else { break; }
 		}
 	}
 	return n;

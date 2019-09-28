@@ -1,71 +1,77 @@
 #ifndef LISTA_SIMPLE_H
 #define LISTA_SIMPLE_H
 
-
 #include <iostream>
 #include <sstream>
-using namespace std;
+
+using std::stringstream;
+using std::string;
 
 template <class T>
 struct NodoDoble {
-	T* object;
-	NodoDoble<T>* previous;
-	NodoDoble<T>* next;
+	T* objeto;
+	NodoDoble<T>* anterior;
+	NodoDoble<T>* siguiente;
 };
 
 template <class T>
 class ListaDobleEnlazada {
 private:
-	NodoDoble<T>* start;
-	NodoDoble<T>* end;
+	NodoDoble<T>* inicio;
+	NodoDoble<T>* final;
 	int tam;
 public:
 	ListaDobleEnlazada();
 	virtual ~ListaDobleEnlazada();
-	virtual bool InsertElement(T*);
-	virtual bool Empty();
-	//virtual bool Errase_Element(T);
-	//virtual T* Search_Element(T*);
-	virtual string Show();
-	virtual string ShowInvertedList();//ver la lista invertida
-	virtual int getTam();
-	virtual NodoDoble<T>* getHead();
-	virtual NodoDoble<T>* getEnd();
-};//fin lista doblemente enlazada
+	virtual bool Agregar(T*);
+	virtual bool Vacia();
+	virtual string Mostrar();
+	virtual string MostrarListaInvertida();
+	virtual int GetTam();
+	virtual NodoDoble<T>* GetInicio();
+	virtual NodoDoble<T>* GetFinal();
+};
+
+//retorna el final de la lista
 template <class T>
-NodoDoble<T>* ListaDobleEnlazada<T>::getEnd() {
-	return end;
+NodoDoble<T>* ListaDobleEnlazada<T>::GetFinal() {
+	return final;
 }
 
+//retorna el inicio de la lista 
 template <class T>
-NodoDoble<T>* ListaDobleEnlazada<T>::getHead() {
-	return start;
+NodoDoble<T>* ListaDobleEnlazada<T>::GetInicio() {
+	return inicio;
 }
 
+//retorna el tamano de la lista
 template <class T>
-int ListaDobleEnlazada<T>::getTam() {
+int ListaDobleEnlazada<T>::GetTam() {
 	return tam;
 }
 
+//constructor default de la lista
 template <class T>
 ListaDobleEnlazada<T>::ListaDobleEnlazada() {
-	start = NULL;
+	inicio = NULL;
 	tam = 0;
 }
 
+//destructor de la lista
 template <class T>
 ListaDobleEnlazada<T>::~ListaDobleEnlazada() {
 	NodoDoble<T>* tmp;
-	while (start != NULL) {
-		tmp = start;
-		start = start->next;
+	while (inicio != NULL) {
+		tmp = inicio;
+		inicio = inicio->siguiente;
 		delete tmp;
 	}
 	tam = 0;
 }
 
+//Agrega un elemento a la lista
 template <class T>
-bool ListaDobleEnlazada<T>::InsertElement(T* item) {
+bool ListaDobleEnlazada<T>::Agregar(T* item) {
 	NodoDoble<T>* actual;
 	try {
 		actual = new NodoDoble<T>;
@@ -74,109 +80,66 @@ bool ListaDobleEnlazada<T>::InsertElement(T* item) {
 		return false;
 	}
 
-	actual->object = item;     // Guardamos el valor en el nodo
-	actual->next = NULL;   // El puntero siguiente apuntaría a NULL
-	actual->previous = NULL;//puntero previo apunte a null
+	actual->objeto = item;
+	actual->siguiente = NULL;
+	actual->anterior = NULL;
 
-	//1.Si la lista está vacía, el nodo creado se convierte en el primer elemento
-	if (start == NULL) {
-		this->start = actual;
-		this->end = actual;
+	if (inicio == NULL) {
+		this->inicio = actual;
+		this->final = actual;
 		++tam;
 		return true;
 	}
-	else {// Si ya existen elementos en la lista, insertarlo al final
-		NodoDoble<T>* tmp = start;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = actual;   // El último nodo apunta al nodo nuevo
-		end = actual;
-		actual->previous = tmp;   // Apuntamos al nodo anterior
-		++tam;
-		return true;
-	}
-}//fin InsertElement
-
-template <class T>
-bool ListaDobleEnlazada<T>::Empty() {
-	return (!start);
-}//si está null
-
-//template <class T>
-//bool ListaDobleEnlazada<T>::Errase_Element(T item) {
-//	if (Empty())
-//		return false;
-//	// Caso #2: Si el elemento a borrar es el primer nodo de la lista
-//	NodoDoble<T>* tmp;
-//	tmp = start;
-//	if (*(start->object) == item) {
-//		start = start->next;
-//		start->previous = NULL;
-//		--tam;
-//		delete tmp;
-//		return true;
-//	}
-//
-//	// Caso #3: Si el elemento a borrar es cualquier otro nodo distinto del primero
-//	NodoDoble<T>* tmp2;
-//	tmp2 = tmp->next;
-//	while (tmp2 != NULL) {
-//		if (*(tmp2->object) == item) {
-//			tmp->next = tmp2->next;
-//			tmp2->next->previous = tmp;
-//			delete tmp2;
-//			--tam;
-//			return item;
-//		}
-//		tmp = tmp2;
-//		tmp2 = tmp2->next;
-//	}
-//	return false;//no lo encontró
-//}//fin errase_element
-
-//template <class T>
-//T* ListaDobleEnlazada<T>::Search_Element(T* item) {//retorna la direccion en donde esta el objeto
-//	if (!start)
-//		return NULL;//lista vacia
-//	NodoDoble<T>* tmp = start;
-//	while (tmp) {
-//		if (*(tmp->object) == *item)
-//			return (tmp->object);
-//		tmp = tmp->next;
-//	}
-//	return NULL;//si no encontró nada
-//}
-
-template <class T>
-string ListaDobleEnlazada<T>::Show() {
-	stringstream aux;
-	if (!start)
-		aux << "EMPTY LIST :c\n\n";
 	else {
-		aux << "LIST OF ELEMENTS\n";
-		NodoDoble<T>* tmp = start;
+		NodoDoble<T>* tmp = inicio;
+		while (tmp->siguiente != NULL)
+			tmp = tmp->siguiente;
+		tmp->siguiente = actual;
+		final = actual;
+		actual->anterior = tmp;
+		++tam;
+		return true;
+	}
+}
+
+//retorna true si la lista esta vacia
+template <class T>
+bool ListaDobleEnlazada<T>::Vacia() {
+	return (!inicio);
+}
+
+//Imprime la lista normal de inicio a fin
+template <class T>
+string ListaDobleEnlazada<T>::Mostrar() {
+	stringstream aux;
+	if (!inicio)
+		aux << "Lista Vacia \n\n";
+	else {
+		aux << "Elementos de la lista\n";
+		NodoDoble<T>* tmp = inicio;
 		while (tmp) {
-			aux << *(tmp->object);
-			tmp = tmp->next;
+			aux << *(tmp->objeto);
+			tmp = tmp->siguiente;
 		}
-		aux << "\nList size:" << tam;
-	}//fin else
+		aux << "\n Tamano de la Lista:" << tam;
+	}
 	return aux.str();
-}//fin del mostrar
+}
 
+//imprime la lista del final hasta el inicio
 template <class T>
-string ListaDobleEnlazada<T>::ShowInvertedList() {
+string ListaDobleEnlazada<T>::MostrarListaInvertida() {
 	stringstream aux;
-	if (!start) //lista vacia
-		aux << "\nEMPTY LIST :c ...\n";
+	if (!inicio)
+		aux << "\n Lista Vacia ...\n";
 	else {
-		NodoDoble<T>* tmp = end;
+		NodoDoble<T>* tmp = final;
 		while (tmp != NULL) {
-			aux << *(tmp->object);
-			tmp = tmp->previous;
+			aux << *(tmp->objeto);
+			tmp = tmp->anterior;
 		}
 	}
 	return aux.str();
-}//fin lista Invertida
+}
 
 #endif // !LISTA_SIMPLE_H

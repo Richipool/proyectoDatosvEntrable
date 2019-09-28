@@ -3,10 +3,13 @@
 #define ZERO 0
 #define UNO 1
 #include <string>
-using namespace std;
 
 #include "Vector.h"
 #include "Lista_Doble.h"
+
+using std::string;
+using std::cout;
+using std::to_string;
 
 
 class Integer {
