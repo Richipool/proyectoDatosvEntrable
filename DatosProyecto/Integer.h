@@ -9,11 +9,11 @@
 #define ZERO 0
 #define UNO 1
 
-//using std::string;
-//using std::cout;
-//using std::to_string;
+using std::string;
+using std::cout;
+using std::to_string;
 
-using namespace std;
+//using namespace std;
 
 class Integer {
 private:
