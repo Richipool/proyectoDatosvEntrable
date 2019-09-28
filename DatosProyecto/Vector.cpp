@@ -43,7 +43,7 @@ int Vector::GetCantidad(){
 
 // sobrecarga del operador << de salida
 ostream & operator<<(ostream & salida,  Vector &d){
-	salida << d.ImprimeNumero();
+	salida << d.ImprimirNumero();
 	return salida;
 }
 
