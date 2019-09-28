@@ -450,10 +450,7 @@ Integer& Integer::factorial(Integer& num) {
 	}
 	return *nuevo;
 }
-
-
-
-
+/*metodo de fibonacci de manera ierativa, resulta que fue la manera mas rapida de encontrarlo*/
 Integer& Integer::fibonacci(Integer& num){
 	Integer aux1("0");
 	Integer aux2("1");
