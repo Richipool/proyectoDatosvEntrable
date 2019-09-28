@@ -28,52 +28,61 @@ public:
 	/*ayudas*/
 	char intTochar(int n);//este lo ocupa
 	int charToint(char n);//este lo ocupa
-	Integer& multiplicacion(Integer*);//este lo ocupa
+	void parse(string);//pasa de string a Integer
 
-	bool getNegative();
-	void setNegative(bool negative);
-	ListaDobleEnlazada<Vector>* getList();
-	void Agregar(string num);
-	void AgregarVerdadero(string num);
+	/*operaciones*/
+	//multiplicacion
+
+	Integer& multiplicacion(Integer*);//este lo ocupa
+	//divicion
+
+	Integer& dividir(Integer& divisor);
+	//suma
 
 	Integer& operator +(Integer&);//suma
 	Integer& sumar_nodos(Integer*);
-	int sumar_vectores(Vector *,Vector*,Integer&, int);
 	int sumar_vector_extra(Vector*, int, Integer&);
+	int sumar_vectores(Vector*, Vector*, Integer&, int);
+	//resta
+
+	Integer& resta(Integer& num2);
+
+	/*operadores*/
 	Integer& operator -(Integer&);//resta
-	 
 	Integer& operator *(Integer&);//multiplica
 	Integer& operator /(Integer&);//division
-
-	
-
-
 	void operator +=(Integer&);//incremento
 	void operator -=(Integer&);//decremento
 	void operator *=(Integer&);//multiplicacion propia
 	void operator /=(Integer&);//division propia
-
-
-	bool operator ==(Integer&) ;//comparacion
-	bool comparar_nodos(Integer*); //Recorre la lista
-	bool comparar_vectores(Vector* v1, Vector* v2); //Recorre el vector
-
+	bool operator ==(Integer&);//comparacion
 	bool operator !=(Integer&);//distinto
 	bool operator <(Integer&);//menor
-	bool comparar_nodos_menor(Integer*);
-	bool comparar_vectores_menor(Vector*, Vector*);
 	bool operator <=(Integer&);//menor igual
 	bool operator >(Integer&);//mayor
 	bool operator >=(Integer&);//mayor igual
 
-	void parse(string);//pasa de string a Integer
+	/*metodos de comparaciones*/
+	bool comparar_nodos(Integer*); //Recorre la lista
+	bool comparar_vectores(Vector* v1, Vector* v2); //Recorre el vector
+	bool comparar_nodos_menor(Integer*);
+	bool comparar_vectores_menor(Vector*, Vector*);
 
+	/*sets/gets*/
+	bool getNegative();
+	void setNegative(bool negative);
+	ListaDobleEnlazada<Vector>* getList();
+
+	/*metodos para agregar numero al integer*/
+	void Agregar(string num);
+	void AgregarVerdadero(string num);
+
+	/*meodos para toString */
 	string toString();
 	void quitarCeros(string &n);
 
-	Integer& dividir(Integer& divisor);
+	
 
-	Integer& resta(Integer& num2);
 	//Integer& factorialCola(Integer& uno, Integer &dos);
 	//el verdadero
 	Integer& factorial(Integer&);

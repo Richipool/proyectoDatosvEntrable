@@ -12,6 +12,8 @@ int main() {
 	Integer* prueba = new Integer("1000000000000000000000000000000000000000000000000000000000000000000000");
 	Integer* prueba2 = new Integer("1000000000000000000000000000000000000000000000000000000000000000001");
 
+	Integer* aux = new Integer(*prueba);
+	cout << aux->toString()<<endl;
 	//Integer nuevo = (*prueba)-(*prueba2);
 	//Integer nuevo = (*prueba)/(*prueba2);
 	//cout << nuevo.toString()<<endl;
