@@ -1,16 +1,19 @@
 #ifndef INTEGER
 #define INTEGER
-#define ZERO 0
-#define UNO 1
-#include <string>
 
+#include <string>
+#include<iostream>
 #include "Vector.h"
 #include "Lista_Doble.h"
 
-using std::string;
-using std::cout;
-using std::to_string;
+#define ZERO 0
+#define UNO 1
 
+//using std::string;
+//using std::cout;
+//using std::to_string;
+
+using namespace std;
 
 class Integer {
 private:

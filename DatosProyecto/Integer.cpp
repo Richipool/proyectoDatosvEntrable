@@ -1,5 +1,7 @@
 #include "Integer.h"
 
+using namespace std;
+
 Integer::Integer() {//mientras tanto
 	this->list = new ListaDobleEnlazada<Vector>();
 	negative = false;
@@ -399,8 +401,8 @@ Integer& Integer::resta(Integer& num2){
 	// Calculate length of both string 
 	int n1 = str1.length(), n2 = str2.length();
 	// Reverse both of string
-	reverse(str1.begin(), str1.final());
-	reverse(str2.begin(), str2.final());
+	reverse(str1.begin(), str1.end());
+	reverse(str2.begin(), str2.end());
 	int carry = 0;
 	// Run loop till small string length 
 	// and subtract digit of str1 to str2 
@@ -433,7 +435,7 @@ Integer& Integer::resta(Integer& num2){
 		str.push_back(sub + '0');
 	}
 	// reverse resultant string 
-	reverse(str.begin(), str.final());
+	reverse(str.begin(), str.end());
 	nuevo->Agregar(str);
 	return *nuevo;
 }
