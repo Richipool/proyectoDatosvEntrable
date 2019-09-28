@@ -479,6 +479,41 @@ Integer& Integer::Combinatoria(Integer& uno, Integer&dos) {
 	*nuevo = (factorial(aux1) / (factorial(aux2) * factorial(aux1-aux2)));
 	return *nuevo;
 }
+
+bool Integer::Menor(Integer& num)
+{
+	int num1;
+	int num2;
+	string aux = num.toString();
+	string aux2 = this->toString();
+	if (aux.size() < aux2.size()) {
+		return true;
+	}
+	else if (aux.size() > aux2.size()) {
+		return false;
+	}
+	else {
+		num1 = stoi(aux.substr(0, 8));
+		num2 = stoi(aux2.substr(0, 8));
+		if (num1 < num2) {
+			return true;
+		}
+		else
+		{
+			bool bandera = false;
+			for (int i = 8; i < aux.size(); i+=9) {
+				num1 = stoi(aux.substr(i, 9));
+				num2 = stoi(aux2.substr(i, 9));
+				if (num1 < num2) {
+					bandera = true;
+				}
+				else
+					bandera = false;
+			}
+			return bandera;
+		}
+	}
+}
  
 
 
@@ -528,14 +563,15 @@ bool Integer::operator!=(Integer& i1) {
 }
 
 bool Integer::operator<(Integer& i1) {
-	// si son iguales, entonces no son menores
-	if (comparar_nodos(&i1)) {
-		return false;
-	}
-	//compara a ver si son mayores o menores
-	else {
-		return !comparar_nodos_menor(&i1);
-	}
+	return !Menor(i1);
+	//// si son iguales, entonces no son menores
+	//if (comparar_nodos(&i1)) {
+	//	return false;
+	//}
+	////compara a ver si son mayores o menores
+	//else {
+	//	return !comparar_nodos_menor(&i1);
+	//}
 }
 
 
@@ -629,13 +665,14 @@ bool Integer::operator<=(Integer& i1) {
 }
 
 bool Integer::operator>(Integer& i) {
-	if (comparar_nodos(&i)) {
+	return Menor(i);
+	/*if (comparar_nodos(&i)) {
 		return false;
 	}
 	else if (comparar_nodos_menor(&i)) {
 		return true;
 	}
-	else return false;
+	else return false;*/
 }
 
 bool Integer::operator>=(Integer& i1) {

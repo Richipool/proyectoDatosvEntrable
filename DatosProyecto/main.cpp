@@ -9,11 +9,11 @@ using std::cout;
 using std::endl;
 
 int main() {
-	Integer* prueba = new Integer("1000000000000000000000000000000000000000000000000000000000000000000000");
-	Integer* prueba2 = new Integer("1000000000000000000000000000000000000000000000000000000000000000001");
+	Integer* prueba =  new Integer("78");
+	Integer* prueba2 = new Integer("54");
 
-	Integer* aux = new Integer(*prueba);
-	cout << aux->toString()<<endl;
+	/*Integer* aux = new Integer(prueba->fibonacci(*prueba2));
+	cout << aux->toString()<<endl;*/
 	//Integer nuevo = (*prueba)-(*prueba2);
 	//Integer nuevo = (*prueba)/(*prueba2);
 	//cout << nuevo.toString()<<endl;
