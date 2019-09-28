@@ -645,4 +645,5 @@ void Integer::operator*=(Integer& integer){
 void Integer::operator/=(Integer& integer){
 	*this = Dividir(integer);
 }
+//Fin de la clase
 
