@@ -16,7 +16,9 @@ int main() {
 		<< "Las operaciones permitidas son la suma, Resta, multiplicacion, divicion, comparaciones, asignaciones, factorial,\nfibonacci, combinatoria\n";
 	system("pause");
 	system("cls");
-	char salir;
+	// Constructores:
+
+	int salir;
 	do {
 		cout << "Menu de operaciones.\n";
 		cout << "1- suma.\n2- resta.\n3- multiplicacion.\n4- Division.\n";
@@ -29,7 +31,7 @@ int main() {
 		system("cls");
 		switch (salir)
 		{
-		case '1': {
+		case 1: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -48,7 +50,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case '2': {
+		case 2: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -67,7 +69,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case '3': {
+		case 3: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -86,7 +88,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case '4': {
+		case 4: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -105,7 +107,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case '5': {
+		case 5: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -129,7 +131,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case '6': {
+		case 6: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -153,7 +155,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case '7': {
+		case 7: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -177,7 +179,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case '8': {
+		case 8: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -201,7 +203,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case '9': {
+		case 9: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -225,7 +227,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case'10':{
+		case 10:{
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -249,7 +251,7 @@ int main() {
 			delete integer2;
 			break; 
 		}
-		case '11': {
+		case 11: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -263,7 +265,7 @@ int main() {
 			delete integer1;
 			break;
 		}
-		case '12': {
+		case 12: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -277,7 +279,7 @@ int main() {
 			delete integer1;
 			break;
 		}
-		case '13': {
+		case 13: {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -297,13 +299,17 @@ int main() {
 			delete integer2;
 			break;
 		}
+		case 0: {
+			cout << "Gracias por Usar el programa UwU\n";
+			break;
+		}
 		default:
 			cout << "Opcion invalida intentelo de nuevo >:3";
 			system("pause");
 			system("cls");
 			break;
 		}
-	} while (salir != '0');
+	} while (salir != 0);
 	cout << endl << endl << endl;
 	cin.get();
 }
