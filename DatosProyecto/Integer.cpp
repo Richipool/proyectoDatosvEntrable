@@ -327,13 +327,9 @@ Integer& Integer::dividir(Integer& divisor) {
 	Integer help;
 	Integer uno("1");
 	while (aux <= *aux1) {//mientras el divisor sea menor al numero
-		cout<<(aux).toString()<<"\n\n";
 		help = (*aux1 - aux);
-		//cout << (aux).toString() << "\n\n";
-		cout << help.toString()<<"\n\n";
 		string s = help.toString();
 		*aux1 = *new Integer(s);
-		//cout << (*aux1).toString();
 		*contador += uno;
 	}
 	delete aux1;
@@ -351,8 +347,6 @@ Integer& Integer::resta(Integer& num2){
 		return *nuevo;
 	}
 	if (this->negative && num2.negative || !this->negative && !num2.negative) {//si ambos son negativos
-		cout << this->toString()<< "\n\n";
-		cout << num2.toString() << "\n\n";
 		if (*this < num2) {//si el de la izquierda es el menor, entonces por dentro, el izq es el mayor en los negativos
 			str2 = this->toString();//el menor
 			str1 = num2.toString();//el mayor
