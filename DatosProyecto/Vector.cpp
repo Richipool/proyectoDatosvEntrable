@@ -28,7 +28,7 @@ void Vector::SetNumero(int pos, int val){
 }
 
 //imprime los valores del vector
-string Vector::toString() {
+string Vector::ImprimeNumero() {
 	stringstream s;
 	for (int i = cant-1; i >= 0; i--) {
 		s << AgregarCeros(to_string(vect[i]));
@@ -43,7 +43,7 @@ int Vector::GetCantidad(){
 
 // sobrecarga del operador << de salida
 ostream & operator<<(ostream & salida,  Vector &d){
-	salida << d.toString();
+	salida << d.ImprimeNumero();
 	return salida;
 }
 

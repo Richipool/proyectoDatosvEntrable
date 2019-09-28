@@ -13,10 +13,10 @@ int main() {
 	cout << "Estudiantes:\n RICHARD VARGAS VADO 402380714\n LEONARDO BALDARES GOMEZ 304950273\n CRISTOPHER ARCE DIAZ 702680366\n";
 	cout << "Descripcion:\n";
 	cout << "Este proyecto permite realizar operaciones con numero enormes incluso mas grandes que las soportadas por \nel long long int de c++\n"
-		<< "Las operaciones permitidas son la suma, resta, multiplicacion, divicion, comparaciones, asignaciones, factorial,\nfibonacci, combinatoria\n";
+		<< "Las operaciones permitidas son la suma, Resta, multiplicacion, divicion, comparaciones, asignaciones, factorial,\nfibonacci, combinatoria\n";
 	system("pause");
 	system("cls");
-	int salir;
+	char salir;
 	do {
 		cout << "Menu de operaciones.\n";
 		cout << "1- suma.\n2- resta.\n3- multiplicacion.\n4- Division.\n";
@@ -29,8 +29,7 @@ int main() {
 		system("cls");
 		switch (salir)
 		{
-		case 1: {
-			cout << "Suma de Integers :3\n";
+		case '1': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -42,15 +41,14 @@ int main() {
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
 			cout << numero1 << " + " << numero2 << endl;
-			cout << (*integer1 + *integer2).toString() << endl;
+			cout << (*integer1 + *integer2).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
 			delete integer2;
 			break;
 		}
-		case 2: {
-			cout << "Resta de Integers XD\n";
+		case '2': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -62,15 +60,14 @@ int main() {
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
 			cout << numero1 << " - " << numero2 << endl;
-			cout << (*integer1 - *integer2).toString() << endl;
+			cout << (*integer1 - *integer2).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
 			delete integer2;
 			break;
 		}
-		case 3: {
-			cout << "Multiplicacion de Integers n.n\n";
+		case '3': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -82,15 +79,14 @@ int main() {
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
 			cout << numero1 << " * " << numero2 << endl;
-			cout << (*integer1 * *integer2).toString() << endl;
+			cout << (*integer1 * *integer2).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
 			delete integer2;
 			break;
 		}
-		case 4: {
-			cout << "Division de Integers ^u^\n";
+		case '4': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -102,15 +98,14 @@ int main() {
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
 			cout << numero1 << " / " << numero2 << endl;
-			cout << (*integer1 / *integer2).toString() << endl;
+			cout << (*integer1 / *integer2).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
 			delete integer2;
 			break;
 		}
-		case 5: {
-			cout << "Comparacion == Integers :P\n";
+		case '5': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -134,8 +129,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case 6: {
-			cout << "Comparacion != Integers :s\n";
+		case '6': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -159,8 +153,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case 7: {
-			cout << "Comparacion <= Integers XD\n";
+		case '7': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -184,8 +177,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case 8: {
-			cout << "Comparacion >= Integers :3\n";
+		case '8': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -209,8 +201,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case 9: {
-			cout << "Comparacion < Integers :3\n";
+		case '9': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -234,8 +225,7 @@ int main() {
 			delete integer2;
 			break;
 		}
-		case 10: {
-			cout << "Comparacion > Integers :3\n";
+		case'10':{
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -247,7 +237,7 @@ int main() {
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
 			cout << numero1 << " > " << numero2 << endl;
-			if ((*integer1 > * integer2)) {
+			if ((*integer1 > *integer2)) {
 				cout << "El numero 1 es mayor\n";
 			}
 			else {
@@ -257,10 +247,9 @@ int main() {
 			system("cls");
 			delete integer1;
 			delete integer2;
-			break;
+			break; 
 		}
-		case 11: {
-			cout << "Factorial Integer Tarda mucho con numeros muy muy grandes :c\n";
+		case '11': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -268,14 +257,13 @@ int main() {
 			cout << "!"; cin >> numero1; cout << endl;
 			cout << "Resultado: \n";
 			integer1 = new Integer(numero1);
-			cout << (integer1->factorial(*integer1)).toString() << endl;
+			cout << (integer1->Factorial(*integer1)).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
 			break;
 		}
-		case 12: {
-			cout << "Fibonacci Integer no tarda nada UwU\n";
+		case '12': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -283,35 +271,30 @@ int main() {
 			cout << "Fibonacci de: "; cin >> numero1; cout << endl;
 			cout << "Resultado: \n";
 			integer1 = new Integer(numero1);
-			cout << (integer1->fibonacci(*integer1)).toString() << endl;
+			cout<<(integer1->Fibonacci(*integer1)).ImprimeNumero()<<endl;
 			system("pause");
 			system("cls");
 			delete integer1;
 			break;
 		}
-		case 13: {
-			cout << "Combinatoria Integer, tarda mucho con numero muy muy grandes :c\n";
+		case '13': {
 			string numero1;
 			string numero2;
 			Integer* integer1;
 			Integer* integer2;
-			cout << "Digite numero 1 ";
+			cout << "Digite numero 1";
 			cin >> numero1;
-			cout << "Digite numero 2 ";
+			cout << "Digite numero 2";
 			cin >> numero2;
-			cout << "C" << numero1 << "," << numero2 << endl;
+			cout << "C" << numero1 << ","<<numero2 << endl;
 			cout << "Resultado: \n";
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
-			cout << (integer1->Combinatoria(*integer1, *integer2)).toString() << endl;
+			cout << (integer1->Combinatoria(*integer1, *integer2)).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
 			delete integer2;
-			break;
-		}
-		case 0: {
-			cout << "Gracias por usar el programa <3\n";
 			break;
 		}
 		default:

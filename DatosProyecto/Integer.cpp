@@ -1,23 +1,21 @@
 #include "Integer.h"
 
-using namespace std;
-
 Integer::Integer() {//mientras tanto
-	this->list = new ListaDobleEnlazada<Vector>();
-	negative = false;
+	this->lista = new ListaDobleEnlazada<Vector>();
+	variable_negativa = false;
 }
 
 Integer::Integer(string valor) {
-	this->list = new ListaDobleEnlazada<Vector>();
-	negative = false;
-	parse(valor);
+	this->lista = new ListaDobleEnlazada<Vector>();
+	variable_negativa = false;
+	Parse(valor);
 }
 
 Integer::Integer(Integer& obj) {//constructor de copia, copio de uno lleno a uno vacio
-	this->negative = obj.negative;
-	this->list = new ListaDobleEnlazada<Vector>();
-	//NodoDoble<Vector> *aux = list->GetInicio();
-	NodoDoble<Vector>* aux2 = obj.list->GetInicio();
+	this->variable_negativa = obj.variable_negativa;
+	this->lista = new ListaDobleEnlazada<Vector>();
+	//NodoDoble<Vector> *aux = lista->GetInicio();
+	NodoDoble<Vector>* aux2 = obj.lista->GetInicio();
 
 	while (aux2 != NULL) {//ir recorriendo la segunda lista
 		Vector* tmp = new Vector();//por cada nodo se hace un vector
@@ -25,19 +23,19 @@ Integer::Integer(Integer& obj) {//constructor de copia, copio de uno lleno a uno
 		for (int i = 0; i < aux2->objeto->GetCantidad(); i++) {//se llena hasta la cantidad de cada vector
 			tmp->Insertar(aux2->objeto->GetNumero(i));
 		}
-		list->Agregar(tmp);
+		lista->Agregar(tmp);
 		tmp = NULL;
 		aux2 = aux2->siguiente;
 	}//fin del while
 }//fin del constructor copia
 
 Integer& Integer::operator=(Integer& obj) {
-	if (list != NULL) {//si mi lista esta llena, eliminela
-		delete list;
+	if (lista != NULL) {//si mi lista esta llena, eliminela
+		delete lista;
 	}
-	this->list = new ListaDobleEnlazada<Vector>();
-	//NodoDoble<Vector> *aux = list->GetInicio();
-	NodoDoble<Vector>* aux2 = obj.list->GetInicio();
+	this->lista = new ListaDobleEnlazada<Vector>();
+	//NodoDoble<Vector> *aux = lista->GetInicio();
+	NodoDoble<Vector>* aux2 = obj.lista->GetInicio();
 
 	while (aux2 != NULL) {//ir recorriendo la segunda lista
 		Vector* tmp = new Vector();//por cada nodo se hace un vector
@@ -45,7 +43,7 @@ Integer& Integer::operator=(Integer& obj) {
 		for (int i = 0; i < aux2->objeto->GetCantidad(); i++) {//se llena hasta la cantidad de cada vector
 			tmp->Insertar(aux2->objeto->GetNumero(i));
 		}
-		list->Agregar(tmp);
+		lista->Agregar(tmp);
 		tmp = NULL;
 		aux2 = aux2->siguiente;
 	}//fin del while
@@ -54,10 +52,10 @@ Integer& Integer::operator=(Integer& obj) {
 
 
 Integer::~Integer() {
-	delete list;
+	delete lista;
 }
 
-char Integer::intTochar(int n){
+char Integer::PasarIntChar(int n){
 	stringstream a;
 	char x;
 	a << n;
@@ -65,7 +63,7 @@ char Integer::intTochar(int n){
 	return x;
 }
 
-int Integer::charToint(char n){
+int Integer::PasarCharInt(char n){
 	stringstream a;
 	int x;
 	a << n;
@@ -73,15 +71,15 @@ int Integer::charToint(char n){
 	return x;
 }
 
-Integer& Integer::multiplicacion(Integer* nuemro2){
+Integer& Integer::Multiplicacion(Integer* nuemro2){
 	string aux_numero1;
 	string aux_numero2;
 	Integer* nuevo = new Integer();
 	int numero_aux1 = 0;
 	int numero_aux2 = 0;
 
-	aux_numero1 = this->toString();
-	aux_numero2 = nuemro2->toString();
+	aux_numero1 = this->ImprimeNumero();
+	aux_numero2 = nuemro2->ImprimeNumero();
 	string aux_resultado(aux_numero1.length() + aux_numero2.length(), 0);
 	if (aux_numero1.length() == 0 || aux_numero2.length() == 0) {
 		nuevo->Agregar("0");
@@ -94,13 +92,13 @@ Integer& Integer::multiplicacion(Integer* nuemro2){
 		numero_aux2 = 0;
 		for (int j = aux_numero2.length() - 1; j >= 0; j--) {
 			int numero2 = aux_numero2[j] - '0';
-			int suma = numero1 * numero2 + charToint(aux_resultado[numero_aux1 + numero_aux2]) + carry;
+			int suma = numero1 * numero2 + PasarCharInt(aux_resultado[numero_aux1 + numero_aux2]) + carry;
 			carry = suma / 10;
-			aux_resultado[numero_aux1 + numero_aux2] = intTochar(suma % 10);
+			aux_resultado[numero_aux1 + numero_aux2] = PasarIntChar(suma % 10);
 			numero_aux2++;
 		}
 		if (carry > 0) {
-			aux_resultado[numero_aux1 + numero_aux2] += intTochar(carry);
+			aux_resultado[numero_aux1 + numero_aux2] += PasarIntChar(carry);
 		}
 		numero_aux1++;
 	}
@@ -121,17 +119,17 @@ Integer& Integer::multiplicacion(Integer* nuemro2){
 	return *nuevo;
 }
 
-bool Integer::getNegative() {
-	return negative;
+bool Integer::GetNegativa() {
+	return variable_negativa;
 }
 
-void Integer::setNegative(bool negative) {
-	this->negative = negative;
+void Integer::SetNegativa(bool variable_negativa) {
+	this->variable_negativa = variable_negativa;
 }
 
 
 ListaDobleEnlazada<Vector>* Integer::getList() {
-	return list;
+	return lista;
 }
 
 
@@ -139,11 +137,11 @@ void Integer::Agregar(string num) {
 	string num_aux = num;
 	if (num_aux[0] == '-') {
 		num_aux.erase(0, 1);
-		negative = true;
+		variable_negativa = true;
 	}
-	AgregarVerdadero(num_aux);
+	AgregarResultado(num_aux);
 }
-void Integer::AgregarVerdadero(string num) {
+void Integer::AgregarResultado(string num) {
 	string num_auxiliar;
 	Vector* aux = NULL;
 	for (int i = num.size(); i >= 0; i -= 9) {
@@ -160,7 +158,7 @@ void Integer::AgregarVerdadero(string num) {
 			num_auxiliar = num.substr(0, i);
 			//cout << num_auxiliar << endl;
 			aux->Insertar(stoi(num_auxiliar));
-			list->Agregar(aux);
+			lista->Agregar(aux);
 			return;
 		}
 		else { //sino pos no
@@ -169,31 +167,31 @@ void Integer::AgregarVerdadero(string num) {
 			aux->Insertar(stoi(num_auxiliar));
 		}
 		if (i - 9 == 0) {
-			list->Agregar(aux);
+			lista->Agregar(aux);
 			aux = NULL;
 			return;
 		}
 		else if (aux->GetCantidad() == 3) { //cuando el vector se llena se borra ese y se a;ade a la lista
-			list->Agregar(aux);
+			lista->Agregar(aux);
 			aux = NULL;
 		}
 	}
 }
 
 Integer& Integer::operator+(Integer& i1) {
-	return sumar_nodos(&i1);
+	return SumarPorNodos(&i1);
 }
 
-Integer& Integer::sumar_nodos(Integer* integer) {
+Integer& Integer::SumarPorNodos(Integer* integer) {
 	Integer* nuevo = new Integer();//el que se retorna al final y se va modificando
 	int i = 0, carry = 0;
 	Integer* aux1_i, * aux2_i;//auxiliares
-	NodoDoble<Vector>* aux = this->list->GetInicio();
+	NodoDoble<Vector>* aux = this->lista->GetInicio();
 	NodoDoble<Vector>* aux1 = integer->getList()->GetInicio();
 	//Se recorrerá el integer que tenga mayor tamaño
-	if (this->list->GetTam() > integer->getList()->GetTam()) {
+	if (this->lista->GetTam() > integer->getList()->GetTam()) {
 		//se posiciona en los primeros digitos, los "menores"
-		aux = this->list->GetInicio();
+		aux = this->lista->GetInicio();
 		aux1 = integer->getList()->GetInicio();
 		//y acomoda los integers con el mayor arriba y el menor abajo
 		aux1_i = this;
@@ -201,7 +199,7 @@ Integer& Integer::sumar_nodos(Integer* integer) {
 	}
 	else {//resulta que el de la izquierda es el menor y el de la derecha es mayor, recorrer el de la derecha
 		aux = integer->getList()->GetInicio();
-		aux1 = this->list->GetInicio();
+		aux1 = this->lista->GetInicio();
 		//se acomoda igual, el mayor arriba y el menor abajo
 		aux1_i = integer;
 		aux2_i = this;
@@ -211,13 +209,13 @@ Integer& Integer::sumar_nodos(Integer* integer) {
 		//el contador me dice cuando ya se terminó la lista menor para seguir trabajando con la grande
 		if (i < aux2_i->getList()->GetTam()) {
 			//el carry se va modificando tambien, le mando los 2 vectores, el nuevo integer y el mismo carry
-			carry = sumar_vectores(aux->objeto, aux1->objeto, *nuevo, carry);
+			carry = SumaVectores(aux->objeto, aux1->objeto, *nuevo, carry);
 			//cout << "\n\n\nCARRY: " << carry << "\n\n\n";//prueba
 			aux1 = aux1->siguiente; //Para que no se pase de verga
 		}
 		else {//todavia quedan nodos con vectores arriba, sefuir trabajando con esos
 			//solo le mando el ultimo carry, el vector mas grande, y el nuevo integer
-			carry = sumar_vector_extra(aux->objeto, carry, *nuevo);
+			carry = SumarVectorSiSePasa(aux->objeto, carry, *nuevo);
 		}
 		aux = aux->siguiente;//cambia al sgt nodo
 		i++;//incrementa el contador
@@ -229,7 +227,7 @@ Integer& Integer::sumar_nodos(Integer* integer) {
 	return *nuevo;
 }
 
-int Integer::sumar_vectores(Vector* v1, Vector* v2, Integer& nuevo, int carry) {//trabajar sobre el mismo integer
+int Integer::SumaVectores(Vector* v1, Vector* v2, Integer& nuevo, int carry) {//trabajar sobre el mismo integer
 	int aux1, aux2, carry1 = carry;//el carry va a ser el mismo que traia
 	long long int num;//para ir almacenando el numero y luego separarlo
 	Vector* v_aux1;
@@ -279,7 +277,7 @@ int Integer::sumar_vectores(Vector* v1, Vector* v2, Integer& nuevo, int carry) {
 	return carry1; //retorna el carry para que lo reciba de nuevo en el proximo nodo
 }
 
-int Integer::sumar_vector_extra(Vector* v, int carry, Integer& integer) {
+int Integer::SumarVectorSiSePasa(Vector* v, int carry, Integer& integer) {
 	int carry1 = carry;
 	long long int num;
 	string numero = "";
@@ -294,15 +292,15 @@ int Integer::sumar_vector_extra(Vector* v, int carry, Integer& integer) {
 }
 
 Integer& Integer::operator-(Integer& integer) {
-	return resta(integer);
+	return Resta(integer);
 }
 
-string Integer::toString() {
-	string aux = list->MostrarListaInvertida();
-	if (list->GetTam() == 1 && list->GetInicio()->objeto->GetCantidad()==1 && list->GetInicio()->objeto->GetNumero(0) == 0)
+string Integer::ImprimeNumero() {
+	string aux = lista->MostrarListaInvertida();
+	if (lista->GetTam() == 1 && lista->GetInicio()->objeto->GetCantidad()==1 && lista->GetInicio()->objeto->GetNumero(0) == 0)
 		aux = "0";
-	else quitarCeros(aux);
-	if (negative) {
+	else QuitaCerosExtra(aux);
+	if (variable_negativa) {
 		return "-" + aux;
 	}
 	else {
@@ -310,7 +308,7 @@ string Integer::toString() {
 	}
 }
 
-void Integer::quitarCeros(string &n) {
+void Integer::QuitaCerosExtra(string &n) {
 	if (n[0] == '0') {
 		while (n[0] == '0') {
 			n.erase(0, 1);
@@ -320,15 +318,15 @@ void Integer::quitarCeros(string &n) {
 
 
 
-Integer& Integer::dividir(Integer& divisor) {
-	Integer *aux1 = new Integer(this->toString());
-	Integer aux(divisor.toString());
+Integer& Integer::Dividir(Integer& divisor) {
+	Integer *aux1 = new Integer(this->ImprimeNumero());
+	Integer aux(divisor.ImprimeNumero());
 	Integer* contador = new Integer("0");
 	Integer help;
 	Integer uno("1");
 	while (aux <= *aux1) {//mientras el divisor sea menor al numero
 		help = (*aux1 - aux);
-		string s = help.toString();
+		string s = help.ImprimeNumero();
 		*aux1 = *new Integer(s);
 		*contador += uno;
 	}
@@ -336,57 +334,57 @@ Integer& Integer::dividir(Integer& divisor) {
 	return *contador;
 }
 
-Integer& Integer::resta(Integer& num2){
+Integer& Integer::Resta(Integer& num2){
 	Integer* nuevo = new Integer();
 	string str1;
 	string str2;
-	//resta 
-	if (*this == num2 && ((!this->getNegative() && !num2.getNegative())
-		|| (this->getNegative() && num2.getNegative()))) {
+	//Resta 
+	if (*this == num2 && ((!this->GetNegativa() && !num2.GetNegativa())
+		|| (this->GetNegativa() && num2.GetNegativa()))) {
 		nuevo->Agregar("-1");
 		return *nuevo;
 	}
-	if (this->negative && num2.negative || !this->negative && !num2.negative) {//si ambos son negativos
+	if (this->variable_negativa && num2.variable_negativa || !this->variable_negativa && !num2.variable_negativa) {//si ambos son negativos
 		if (*this < num2) {//si el de la izquierda es el menor, entonces por dentro, el izq es el mayor en los negativos
-			str2 = this->toString();//el menor
-			str1 = num2.toString();//el mayor
+			str2 = this->ImprimeNumero();//el menor
+			str1 = num2.ImprimeNumero();//el mayor
 			if (str1[0] == '-') //quitarles los -
 				str1.erase(0, 1);
 			if (str2[0] == '-') //quitarles los -
 				str2.erase(0, 1);//quitarle el negativo	
 			//darles vuelta cuando son ambos negativos
-			if (this->negative && num2.negative) {//si ambos son positivos, el resultado es negativo
+			if (this->variable_negativa && num2.variable_negativa) {//si ambos son positivos, el resultado es negativo
 				swap(str1, str2);
-				nuevo->setNegative(true);
+				nuevo->SetNegativa(true);
 			}
 			//swap(str1,str2);//por si son negativos, 
-			if (!this->negative && !num2.negative) {//si ambos son positivos, el resultado es negativo
+			if (!this->variable_negativa && !num2.variable_negativa) {//si ambos son positivos, el resultado es negativo
 				//swap(str1, str2);
-				nuevo->setNegative(true);
+				nuevo->SetNegativa(true);
 			}
 
 		}
 		else {//siempre el mayor queda arriba
-			str1 = this->toString();
-			str2 = num2.toString();
+			str1 = this->ImprimeNumero();
+			str2 = num2.ImprimeNumero();
 			if (str1[0] == '-') //quitarles los -
 				str1.erase(0, 1);
 			if (str2[0] == '-') //quitarles los -
 				str2.erase(0, 1);//quitarle el negativo	
-			if (this->negative && num2.negative) {//si ambos son positivos, el resultado es negativo
+			if (this->variable_negativa && num2.variable_negativa) {//si ambos son positivos, el resultado es negativo
 				swap(str1, str2);
-				//nuevo->setNegative(true);
+				//nuevo->SetNegativa(true);
 			}
 		}
 	}//si ambos son negativos o positivos
 
 	//si son de signos diferentes, suma
-	if (this->negative && !num2.negative || !this->negative && num2.negative) {//si ambos son negativos
+	if (this->variable_negativa && !num2.variable_negativa || !this->variable_negativa && num2.variable_negativa) {//si ambos son negativos
 		//la suma ya acomoda al mayot y al menor
-		if (this->negative && !num2.negative) {//-&+ = resultado -
-			nuevo->setNegative(true);
+		if (this->variable_negativa && !num2.variable_negativa) {//-&+ = resultado -
+			nuevo->SetNegativa(true);
 		}
-		*nuevo = this->sumar_nodos(&num2);
+		*nuevo = this->SumarPorNodos(&num2);
 		return *nuevo;
 	}
 
@@ -434,7 +432,7 @@ Integer& Integer::resta(Integer& num2){
 	return *nuevo;
 }
 
-Integer& Integer::factorial(Integer& num) {
+Integer& Integer::Factorial(Integer& num) {
 	Integer* nuevo = new Integer("1");//empieza con 1							  
 	Integer i("1");
 	Integer contador("1");
@@ -444,8 +442,8 @@ Integer& Integer::factorial(Integer& num) {
 	}
 	return *nuevo;
 }
-/*metodo de fibonacci de manera ierativa, resulta que fue la manera mas rapida de encontrarlo*/
-Integer& Integer::fibonacci(Integer& num){
+/*metodo de Fibonacci de manera ierativa, resulta que fue la manera mas rapida de encontrarlo*/
+Integer& Integer::Fibonacci(Integer& num){
 	Integer aux1("0");
 	Integer aux2("1");
 	Integer sig, primero("0"), segundo("1");
@@ -467,7 +465,7 @@ Integer& Integer::Combinatoria(Integer& uno, Integer&dos) {
 	Integer* nuevo = new Integer();
 	Integer aux1(uno);
 	Integer aux2(dos);
-	*nuevo = (factorial(aux1) / (factorial(aux2) * factorial(aux1-aux2)));
+	*nuevo = (Factorial(aux1) / (Factorial(aux2) * Factorial(aux1-aux2)));
 	return *nuevo;
 }
 
@@ -475,8 +473,8 @@ bool Integer::Menor(Integer& num)
 {
 	int num1;
 	int num2;
-	string aux = num.toString();
-	string aux2 = this->toString();
+	string aux = num.ImprimeNumero();
+	string aux2 = this->ImprimeNumero();
 	if (aux.size() < aux2.size()) {
 		return true;
 	}
@@ -509,21 +507,21 @@ bool Integer::Menor(Integer& num)
 
 
 bool Integer::operator==(Integer& i1) {
-	return comparar_nodos(&i1);
+	return ComparaPorNodos(&i1);
 }
 
 //recorre los nodos para comparar sus vectores, si son == o !=
-bool Integer::comparar_nodos(Integer* integer) {
+bool Integer::ComparaPorNodos(Integer* integer) {
 	//si los tamaños son distintos, de una vez no son iguales
-	if (this->list->GetTam() != integer->getList()->GetTam()) {
+	if (this->lista->GetTam() != integer->getList()->GetTam()) {
 		return false;
 	}
 	//ir comparando los vectores de cada nodo, desde los ultimos numeros de integer
-	NodoDoble<Vector>* aux = this->list->GetInicio();
+	NodoDoble<Vector>* aux = this->lista->GetInicio();
 	NodoDoble<Vector>* aux1 = integer->getList()->GetInicio();
 	while (aux != NULL) {//ir de nodo en nodo
 		//si los contenidos de los arreglos no son iguales
-		if (!comparar_vectores(aux->objeto, aux1->objeto)) {
+		if (!ComparaPorVectores(aux->objeto, aux1->objeto)) {
 			return false;
 		}
 		//moverse a los siguientes nodos (27 digitos a la izquierda)
@@ -533,7 +531,7 @@ bool Integer::comparar_nodos(Integer* integer) {
 	return true;//al final de todo, son iguales 
 }
 
-bool Integer::comparar_vectores(Vector* v1, Vector* v2) {
+bool Integer::ComparaPorVectores(Vector* v1, Vector* v2) {
 	//si las cantidades son distintas, de una vez no son iguales (uno tiene mas o menor digitos que el otro)
 	if (v1->GetCantidad() != v2->GetCantidad()) {
 		return false;
@@ -550,38 +548,38 @@ bool Integer::comparar_vectores(Vector* v1, Vector* v2) {
 
 //si no son iguales, son diferentes...
 bool Integer::operator!=(Integer& i1) {
-	return !comparar_nodos(&i1);
+	return !ComparaPorNodos(&i1);
 }
 
 bool Integer::operator<(Integer& i1) {
 	return !Menor(i1);
 	//// si son iguales, entonces no son menores
-	//if (comparar_nodos(&i1)) {
+	//if (ComparaPorNodos(&i1)) {
 	//	return false;
 	//}
 	////compara a ver si son mayores o menores
 	//else {
-	//	return !comparar_nodos_menor(&i1);
+	//	return !NodoMenor(&i1);
 	//}
 }
 
 
 //i1 < i2
-bool Integer::comparar_nodos_menor(Integer* integer) {
+bool Integer::NodoMenor(Integer* integer) {
 	//Si los 2 son negativos 
-	if (this->negative && integer->getNegative()) {
-		if (this->list->GetTam() > integer->getList()->GetTam()) {
+	if (this->variable_negativa && integer->GetNegativa()) {
+		if (this->lista->GetTam() > integer->getList()->GetTam()) {
 			return false;
 		}
 		//si tiene menos nodos, es el menor
-		else if (this->list->GetTam() < integer->getList()->GetTam()) {
+		else if (this->lista->GetTam() < integer->getList()->GetTam()) {
 			return true;
 		}
 		//si son del mismo tamaño
-		NodoDoble<Vector>* aux = this->list->GetFinal();
+		NodoDoble<Vector>* aux = this->lista->GetFinal();
 		NodoDoble<Vector>* aux1 = integer->getList()->GetFinal();
 		while (aux != NULL) {
-			if (comparar_vectores_menor(aux->objeto, aux1->objeto)) { //esta negado ya que va a devolver false apenas haya un mayor
+			if (VectorMenor(aux->objeto, aux1->objeto)) { //esta negado ya que va a devolver false apenas haya un mayor
 				return true;
 			}
 			aux = aux->anterior;
@@ -591,26 +589,26 @@ bool Integer::comparar_nodos_menor(Integer* integer) {
 	}
 
 	//S EL IZQUIERDO EN NEGATIVO Y EL DERECHO POSITIVO
-	if (this->negative && !integer->getNegative()) {
+	if (this->variable_negativa && !integer->GetNegativa()) {
 		return false;//aqui era true
 	}
 	//SI EL IZQUIERDO ES POSITIVO Y EL DERECHO NEGATIVO
-	if (!this->negative && integer->getNegative()) {
+	if (!this->variable_negativa && integer->GetNegativa()) {
 		return true;//aqui era false
 	}
 	//Compara tam de la lista, si tiene mas nodos, entonces no es el menor
-	if (this->list->GetTam() > integer->getList()->GetTam()) {
+	if (this->lista->GetTam() > integer->getList()->GetTam()) {
 		return true;//era false
 	}
 	//si tiene menos nodos, es el menor
-	else if (this->list->GetTam() < integer->getList()->GetTam()) {
+	else if (this->lista->GetTam() < integer->getList()->GetTam()) {
 		return false;//era true
 	}
 	//SI AMBOS SON POSITIVOS
-	NodoDoble<Vector>* aux = this->list->GetFinal();
+	NodoDoble<Vector>* aux = this->lista->GetFinal();
 	NodoDoble<Vector>* aux1 = integer->getList()->GetFinal();
 	while (aux != NULL) {
-		if (comparar_vectores_menor(aux->objeto, aux1->objeto)) { //esta negado ya que va a devolver false apenas haya un mayor
+		if (VectorMenor(aux->objeto, aux1->objeto)) { //esta negado ya que va a devolver false apenas haya un mayor
 			return false;//esto es false
 		}
 		aux = aux->anterior;
@@ -620,7 +618,7 @@ bool Integer::comparar_nodos_menor(Integer* integer) {
 }
 
 //IR COMPARANDO VECTORES DE LOS NODOS
-bool Integer::comparar_vectores_menor(Vector* v1, Vector* v2) {
+bool Integer::VectorMenor(Vector* v1, Vector* v2) {
 	//si el de la izq tiene mas numeros que el de la derecha, ya no es el menor
 	if (v1->GetCantidad() > v2->GetCantidad()) {
 		return false;
@@ -647,60 +645,60 @@ bool Integer::comparar_vectores_menor(Vector* v1, Vector* v2) {
 
 
 bool Integer::operator<=(Integer& i1) {
-	if(comparar_nodos(&i1)) {
+	if(ComparaPorNodos(&i1)) {
 		return true;
 	}
 	//compara a ver si son mayores o menores
 	else 
-	return !comparar_nodos_menor(&i1);	
+	return !NodoMenor(&i1);	
 }
 
 bool Integer::operator>(Integer& i) {
 	return Menor(i);
-	/*if (comparar_nodos(&i)) {
+	/*if (ComparaPorNodos(&i)) {
 		return false;
 	}
-	else if (comparar_nodos_menor(&i)) {
+	else if (NodoMenor(&i)) {
 		return true;
 	}
 	else return false;*/
 }
 
 bool Integer::operator>=(Integer& i1) {
-	if (comparar_nodos(&i1)) {
+	if (ComparaPorNodos(&i1)) {
 		return true;
 	}
-	else if (comparar_nodos_menor(&i1)) {
+	else if (NodoMenor(&i1)) {
 		return true;
 	}
 	else return false;
 }
 
-void Integer::parse(string s) {
+void Integer::Parse(string s) {
 	this->Agregar(s);
 }
 
 Integer& Integer::operator*(Integer& I2) {
-	return multiplicacion(&I2);
+	return Multiplicacion(&I2);
 }
 
 Integer& Integer::operator/(Integer& num){
-	return dividir(num);
+	return Dividir(num);
 }
 
 void Integer::operator+=(Integer& integer) {//no recibe esto...es this
-	*this = sumar_nodos(&integer);
+	*this = SumarPorNodos(&integer);
 }
 
 void Integer::operator-=(Integer& integer) {
-	*this = resta(integer);
+	*this = Resta(integer);
 }
 
 void Integer::operator*=(Integer& integer){
-	*this = multiplicacion(&integer);
+	*this = Multiplicacion(&integer);
 }
 
 void Integer::operator/=(Integer& integer){
-	*this = dividir(integer);
+	*this = Dividir(integer);
 }
 
