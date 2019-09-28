@@ -1,84 +1,101 @@
 #ifndef INTEGER
 #define INTEGER
-#define CERO 0
-#define UNO 1
-#include <string>
 
+#include <string>
+#include<iostream>
 #include "Vector.h"
 #include "Lista_Doble.h"
+
+#define ZERO 0
+#define UNO 1
 
 using std::string;
 using std::cout;
 using std::to_string;
-using std::reverse;
 
+//using namespace std;
 
 class Integer {
 private:
-	ListaDobleEnlazada<Vector>* lista;
-	bool varible_negativo;
+	ListaDobleEnlazada<Vector>* list;//va a ser mi numero enooorme
+	bool negative;
 public:
-	Integer();
+	Integer();//sin parametros
 	Integer(string);
-	Integer(Integer&);
-	Integer& operator = (Integer& int2);
+	Integer(Integer&);//constructor copia
+	Integer& operator = (Integer& int2);//sobrecarga del operador de asignacion
 	~Integer();
-	char PasarIntChar(int n);
-	int PasarCharInt(char n);
-	Integer& MultiplicacionInteger(Integer*);
+	/*ayudas*/
+	char intTochar(int n);//este lo ocupa
+	int charToint(char n);//este lo ocupa
+	void parse(string);//pasa de string a Integer
 
-	bool GetVaribleNegativa();
-	void SetNegativo(bool negative);
-	ListaDobleEnlazada<Vector>* GetLista();
-	void AgregarNormal(string num);
-	void AgregarNumeroCorrecto(string num);
+	/*operaciones*/
+	//multiplicacion
 
-	Integer& operator +(Integer&);
-	Integer& SumarNodos(Integer*);
-	int SumarVectores(Vector *,Vector*,Integer&, int);
-	int SumarVectoresSiSePasa(Vector*, int, Integer&);
-	Integer& operator -(Integer&);
-	 
-	Integer& operator *(Integer&);
-	Integer& operator /(Integer&);
+	Integer& multiplicacion(Integer*);//este lo ocupa
+	//divicion
 
-	
+	Integer& dividir(Integer& divisor);
+	//suma
 
-
-	void operator +=(Integer&);
-	void operator -=(Integer&);
-	void operator *=(Integer&);
-	void operator /=(Integer&);
-
-
-	bool operator ==(Integer&) ;
-	bool CompararNodosLista(Integer*); 
-	bool CompararVectoresPorNodo(Vector* v1, Vector* v2);
-
-	bool operator !=(Integer&);
-	bool operator <(Integer&);
-	bool CompararMenoresNodosLista(Integer*);
-	bool CompararMenorVectoresPorNodoLista(Vector*, Vector*);
-	bool operator <=(Integer&);
-	bool operator >(Integer&);
-	bool operator >=(Integer&);
-
-	void Parse(string);
-
-	string ImprimirNumero();
-	void EliminarCeros(string &n);
-
-	Integer& DividirNumero(Integer& divisor);
+	Integer& operator +(Integer&);//suma
+	Integer& sumar_nodos(Integer*);
+	int sumar_vector_extra(Vector*, int, Integer&);
+	int sumar_vectores(Vector*, Vector*, Integer&, int);
+	//resta
 
 	Integer& resta(Integer& num2);
+
+	/*operadores*/
+	Integer& operator -(Integer&);//resta
+	Integer& operator *(Integer&);//multiplica
+	Integer& operator /(Integer&);//division
+	void operator +=(Integer&);//incremento
+	void operator -=(Integer&);//decremento
+	void operator *=(Integer&);//multiplicacion propia
+	void operator /=(Integer&);//division propia
+	bool operator ==(Integer&);//comparacion
+	bool operator !=(Integer&);//distinto
+	bool operator <(Integer&);//menor
+	bool operator <=(Integer&);//menor igual
+	bool operator >(Integer&);//mayor
+	bool operator >=(Integer&);//mayor igual
+
+	/*metodos de comparaciones*/
+	bool comparar_nodos(Integer*); //Recorre la lista
+	bool comparar_vectores(Vector* v1, Vector* v2); //Recorre el vector
+	bool comparar_nodos_menor(Integer*);
+	bool comparar_vectores_menor(Vector*, Vector*);
+
+	/*sets/gets*/
+	bool getNegative();
+	void setNegative(bool negative);
+	ListaDobleEnlazada<Vector>* getList();
+
+	/*metodos para agregar numero al integer*/
+	void Agregar(string num);
+	void AgregarVerdadero(string num);
+
+	/*meodos para toString */
+	string toString();
+	void quitarCeros(string &n);
+
 	
+
+	//Integer& factorialCola(Integer& uno, Integer &dos);
+	//el verdadero
 	Integer& factorial(Integer&);
 	
+	//siempre positivos
 	Integer& fibonacci(Integer&);
 
 	Integer& Combinatoria(Integer& uno, Integer& dos);
 
 };
+//ostream& operator << (ostream&, Integer&);
+
+
 
 #endif // !INTEGER
 

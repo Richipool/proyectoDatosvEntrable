@@ -1,9 +1,11 @@
 #ifndef VECTOR
 #define VECTOR
-#define SIZE 3
 
 #include <iostream>
 #include <sstream>
+
+
+#define SIZE 3
 
 using std::ostream;
 using std::string;
