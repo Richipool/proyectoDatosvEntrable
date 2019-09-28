@@ -13,7 +13,7 @@ int main() {
 	cout << "Estudiantes:\n RICHARD VARGAS VADO 402380714\n LEONARDO BALDARES GOMEZ 304950273\n CRISTOPHER ARCE DIAZ 702680366\n";
 	cout << "Descripcion:\n";
 	cout << "Este proyecto permite realizar operaciones con numero enormes incluso mas grandes que las soportadas por \nel long long int de c++\n"
-		<< "Las operaciones permitidas son la suma, resta, multiplicacion, divicion, comparaciones, asignaciones, factorial,\nfibonacci, combinatoria\n";
+		<< "Las operaciones permitidas son la suma, Resta, multiplicacion, divicion, comparaciones, asignaciones, factorial,\nfibonacci, combinatoria\n";
 	system("pause");
 	system("cls");
 	char salir;
@@ -41,7 +41,7 @@ int main() {
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
 			cout << numero1 << " + " << numero2 << endl;
-			cout << (*integer1 + *integer2).toString() << endl;
+			cout << (*integer1 + *integer2).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
@@ -60,7 +60,7 @@ int main() {
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
 			cout << numero1 << " - " << numero2 << endl;
-			cout << (*integer1 - *integer2).toString() << endl;
+			cout << (*integer1 - *integer2).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
@@ -79,7 +79,7 @@ int main() {
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
 			cout << numero1 << " * " << numero2 << endl;
-			cout << (*integer1 * *integer2).toString() << endl;
+			cout << (*integer1 * *integer2).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
@@ -98,7 +98,7 @@ int main() {
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
 			cout << numero1 << " / " << numero2 << endl;
-			cout << (*integer1 / *integer2).toString() << endl;
+			cout << (*integer1 / *integer2).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
@@ -257,7 +257,7 @@ int main() {
 			cout << "!"; cin >> numero1; cout << endl;
 			cout << "Resultado: \n";
 			integer1 = new Integer(numero1);
-			cout << (integer1->factorial(*integer1)).toString() << endl;
+			cout << (integer1->Factorial(*integer1)).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;
@@ -271,7 +271,7 @@ int main() {
 			cout << "Fibonacci de: "; cin >> numero1; cout << endl;
 			cout << "Resultado: \n";
 			integer1 = new Integer(numero1);
-			cout<<(integer1->fibonacci(*integer1)).toString()<<endl;
+			cout<<(integer1->Fibonacci(*integer1)).ImprimeNumero()<<endl;
 			system("pause");
 			system("cls");
 			delete integer1;
@@ -290,7 +290,7 @@ int main() {
 			cout << "Resultado: \n";
 			integer1 = new Integer(numero1);
 			integer2 = new Integer(numero2);
-			cout << (integer1->Combinatoria(*integer1, *integer2)).toString() << endl;
+			cout << (integer1->Combinatoria(*integer1, *integer2)).ImprimeNumero() << endl;
 			system("pause");
 			system("cls");
 			delete integer1;

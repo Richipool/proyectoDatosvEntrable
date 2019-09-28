@@ -23,7 +23,7 @@ public:
 	void Insertar(int numero);
 	int GetNumero(int i);
 	void SetNumero(int pos, int val);
-	string toString();
+	string ImprimeNumero();
 	int GetCantidad();
 	string AgregarCeros(string n);
 };
