@@ -91,7 +91,7 @@ public:
 	Integer& Combinatoria(Integer& uno, Integer& dos);
 	bool Menor(Integer& num);
 };
-//ostream& operator << (ostream&, Integer&);
+
 
 
 

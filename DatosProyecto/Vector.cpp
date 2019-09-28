@@ -28,7 +28,7 @@ void Vector::SetNumero(int pos, int val){
 }
 
 //imprime los valores del vector
-string Vector::ImprimeNumero() {
+string Vector::ImprimirNumero() {
 	stringstream s;
 	for (int i = cant-1; i >= 0; i--) {
 		s << AgregarCeros(to_string(vect[i]));
