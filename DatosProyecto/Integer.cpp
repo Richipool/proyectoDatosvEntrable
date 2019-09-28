@@ -11,6 +11,17 @@ Integer::Integer(string valor) {
 	Parse(valor);
 }
 
+Integer::Integer(int valor) {
+	this->lista = new ListaDobleEnlazada<Vector>();
+	variable_negativa = false;
+	Parse(to_string(valor));
+}
+Integer::Integer(long int valor) {
+	this->lista = new ListaDobleEnlazada<Vector>();
+	variable_negativa = false;
+	Parse(to_string(valor));
+}
+
 Integer::Integer(Integer& obj) {
 	this->variable_negativa = obj.variable_negativa;
 	this->lista = new ListaDobleEnlazada<Vector>();

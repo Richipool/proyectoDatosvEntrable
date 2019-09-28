@@ -18,8 +18,11 @@ private:
 	ListaDobleEnlazada<Vector>* lista;//va a ser mi numero enooorme
 	bool variable_negativa;
 public:
+
 	Integer();//sin parametros
 	Integer(string);
+	Integer(int);
+	Integer(long int);
 	Integer(Integer&);//constructor copia
 	Integer& operator = (Integer& int2);//sobrecarga del operador de asignacion
 	~Integer();
