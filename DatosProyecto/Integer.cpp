@@ -1,3 +1,14 @@
+/*
+archivo<Integer.cpp>
+Autores<
+-RICHARD VARGAS VADO 402380714
+-LEONARDO BALDARES GOMEZ 304950273
+-CRISTOPHER ARCE DIAZ 702680366
+>
+Descripcion<definicion de metodos para la clase integer con sobrecargas construcctores,etc...>
+*/
+
+
 #include "Integer.h"
 /*constructores*/
 Integer::Integer() {

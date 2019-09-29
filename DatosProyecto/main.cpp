@@ -1,3 +1,13 @@
+/*
+archivo<main.cpp>
+Autores<
+-RICHARD VARGAS VADO 402380714
+-LEONARDO BALDARES GOMEZ 304950273
+-CRISTOPHER ARCE DIAZ 702680366
+>
+Descripcion<Prueba de los metodos del integer>
+*/
+
 #include <iostream>
 #include <sstream>
 #include "Integer.h"

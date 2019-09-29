@@ -1,3 +1,12 @@
+/*
+archivo<Lista.h>
+Autores<
+-RICHARD VARGAS VADO 402380714
+-LEONARDO BALDARES GOMEZ 304950273
+-CRISTOPHER ARCE DIAZ 702680366
+>
+Descripcion<template lista doblemente enlazada que va a almacenar vectores<int>>
+*/
 #ifndef LISTA_SIMPLE_H
 #define LISTA_SIMPLE_H
 

@@ -1,3 +1,13 @@
+/*
+archivo<Integer.h>
+Autores<
+-RICHARD VARGAS VADO 402380714
+-LEONARDO BALDARES GOMEZ 304950273
+-CRISTOPHER ARCE DIAZ 702680366
+>
+Descripcion<clase integer numeros grandes>
+*/
+
 #ifndef INTEGER
 #define INTEGER
 

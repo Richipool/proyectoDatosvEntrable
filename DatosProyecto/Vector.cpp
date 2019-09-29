@@ -1,3 +1,12 @@
+/*
+archivo<Vector.cpp>
+Autores<
+-RICHARD VARGAS VADO 402380714
+-LEONARDO BALDARES GOMEZ 304950273
+-CRISTOPHER ARCE DIAZ 702680366
+>
+Descripcion<vector estatico de 3 posiciones para la divicion de los numeros>
+*/
 #include "Vector.h"
 
 
