@@ -47,7 +47,7 @@ public:
 	//Resta
 
 	Integer& Resta(Integer& num2);
-
+	/**/
 	/*operadores*/
 	Integer& operator -(Integer&);//Resta
 	Integer& operator *(Integer&);//multiplica
