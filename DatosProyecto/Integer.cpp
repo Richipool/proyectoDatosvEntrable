@@ -1,5 +1,5 @@
 #include "Integer.h"
-
+/*constructores*/
 Integer::Integer() {
 	this->lista = new ListaDobleEnlazada<Vector>();
 	variable_negativa = false;
@@ -21,7 +21,7 @@ Integer::Integer(long int valor) {
 	variable_negativa = false;
 	Parse(to_string(valor));
 }
-
+/*constructor de copia*/
 Integer::Integer(Integer& obj) {
 	this->variable_negativa = obj.variable_negativa;
 	this->lista = new ListaDobleEnlazada<Vector>();
@@ -37,7 +37,7 @@ Integer::Integer(Integer& obj) {
 		aux2 = aux2->siguiente;
 	}
 }
-
+/*Regla de 3*/
 Integer& Integer::operator=(Integer& obj) {
 	if (lista != NULL) {
 		delete lista;
@@ -61,7 +61,9 @@ Integer& Integer::operator=(Integer& obj) {
 Integer::~Integer() {
 	delete lista;
 }
+/**/
 
+/*pasar de int */
 char Integer::PasarIntChar(int n){
 	stringstream a;
 	char x;
