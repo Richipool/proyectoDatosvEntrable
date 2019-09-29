@@ -32,6 +32,7 @@ int main() {
 		switch (salir)
 		{
 		case 1: {
+			cout << "Suma de Integers uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -51,6 +52,7 @@ int main() {
 			break;
 		}
 		case 2: {
+			cout << "Restar Integer uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -70,6 +72,7 @@ int main() {
 			break;
 		}
 		case 3: {
+			cout << "Multiplicar Integer uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -89,6 +92,7 @@ int main() {
 			break;
 		}
 		case 4: {
+			cout << "Dividir Integer uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -108,6 +112,7 @@ int main() {
 			break;
 		}
 		case 5: {
+			cout << "Comparar == Integer uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -132,6 +137,7 @@ int main() {
 			break;
 		}
 		case 6: {
+			cout << "Comparar != Integer uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -156,6 +162,7 @@ int main() {
 			break;
 		}
 		case 7: {
+			cout << "Comparar <= Integer uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -180,6 +187,7 @@ int main() {
 			break;
 		}
 		case 8: {
+			cout << "Comparar >= Integer uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -204,6 +212,7 @@ int main() {
 			break;
 		}
 		case 9: {
+			cout << "Comparar < Integer uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -228,6 +237,7 @@ int main() {
 			break;
 		}
 		case 10:{
+			cout << "Comparar > Integer uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -252,6 +262,7 @@ int main() {
 			break; 
 		}
 		case 11: {
+			cout << "Factorial Integers uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -266,6 +277,7 @@ int main() {
 			break;
 		}
 		case 12: {
+			cout << "Fibonacci Integers uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
@@ -280,13 +292,14 @@ int main() {
 			break;
 		}
 		case 13: {
+			cout << "Combinatoria Integers uwu\n";
 			string numero1;
 			string numero2;
 			Integer* integer1;
 			Integer* integer2;
-			cout << "Digite numero 1";
+			cout << "Digite numero 1 ";
 			cin >> numero1;
-			cout << "Digite numero 2";
+			cout << "Digite numero 2 ";
 			cin >> numero2;
 			cout << "C" << numero1 << ","<<numero2 << endl;
 			cout << "Resultado: \n";
